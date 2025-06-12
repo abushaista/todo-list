@@ -16,6 +16,8 @@ Route::post('/todo/create', [TodoController::class, 'store']);
 
 Route::get('/todo', [TodoController::class, 'index']);
 
-Route::get('/todo/{id}', [TodoController::class, 'show']);
+Route::get('/todo/{id}/detail', [TodoController::class, 'show']);
 
-Route::get('/search/todo', [TodoController::class, 'search']);
+Route::get('/todo/search', [TodoController::class, 'search']);
+
+Route::get('/todo/chart', [TodoController::class, 'chart']);

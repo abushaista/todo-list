@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Contracts\TodoServiceInterface;
 use App\Services\TodoService;
+use App\Contracts\TodoExportInterface;
+use App\Services\TodoExport;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -15,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         $this->app->bind(TodoServiceInterface::class, TodoService::class);
+        $this->app->bind(TodoExportInterface::class, TodoExport::class);
     }
 
     /**

@@ -9,6 +9,8 @@ interface TodoServiceInterface
 {
     public function filtered(array $filter): Collection;
 
+    public function summary(string $type): array;
+
     public function create(array $data): Todo;
 
     public function update(Todo $todo, array $data): Todo;

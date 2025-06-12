@@ -17,4 +17,9 @@ class Todo extends Model
         'status',
         'priority',
     ];
+    protected $hidden = [
+        'deleted_at',
+        'created_at',
+        'updated_at',
+    ];
 }
