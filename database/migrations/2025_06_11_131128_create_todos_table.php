@@ -16,9 +16,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('assignee')->nullable();
             $table->date('due_date');
-            $table->integer('time_tracked');
-            $table->enum('status',['pending','open','in_progress','completed'])->default('pending');
-            $table->enum('priority',['low','medium','high']);
+            $table->integer('time_tracked')->default(0);
+            $table->enum('status', ['pending', 'open', 'in_progress', 'completed'])->default('pending');
+            $table->enum('priority', ['low', 'medium', 'high']);
             $table->softDeletes();
             $table->timestamps();
         });

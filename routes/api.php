@@ -8,8 +8,14 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::post('/todo', function(Request $request) {
+Route::post('/todo', function (Request $request) {
     return $request;
 });
 
-Route::post('/todo/create', [TodoController::class,'store']);
+Route::post('/todo/create', [TodoController::class, 'store']);
+
+Route::get('/todo', [TodoController::class, 'index']);
+
+Route::get('/todo/{id}', [TodoController::class, 'show']);
+
+Route::get('/search/todo', [TodoController::class, 'search']);
