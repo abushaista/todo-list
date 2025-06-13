@@ -29,7 +29,7 @@ A clean and RESTful **Todo List API** built with Laravel 12. Manage tasks using 
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/todo-list.git
+git clone https://github.com/abushaista/todo-list  
 cd todo-list
 
 # Install dependencies
