@@ -52,13 +52,16 @@ Default API base URL: `http://localhost:8000/api`
 
 ## 🧪 API Endpoints
 
-| Method | Endpoint          | Description          |
-|--------|-------------------|----------------------|
-| GET    | `/api/todos`      | Get all todos        |
-| GET    | `/api/todos/{id}` | Get a specific todo  |
-| POST   | `/api/todos`      | Create a new todo    |
-| PUT    | `/api/todos/{id}` | Update a todo        |
-| DELETE | `/api/todos/{id}` | Delete a todo        |
+| Method | Endpoint                | Description                                      |
+|--------|-------------------------|--------------------------------------------------|
+| GET    | `/api/todo`             | Get all todos                                    |
+| GET    | `/api/todo/{id}/detail` | Get a specific todo                              |
+| GET    | `/api/todo/search`      | Get all filtered todo                            |
+| GET    | `/api/todo/export`      | Get all filtered todo as excell file             |
+| GET    | `/api/todo/chart`       | Get chart data for all todos with specific type  |
+| POST   | `/api/todo`             | Create a new todo                                |
+| PUT    | `/api/todo/{id}`        | Update a todo                                    |
+| DELETE | `/api/todo/{id}`        | Delete a todo                                    |
 
 ---
 
