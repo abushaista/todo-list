@@ -81,6 +81,12 @@ class TodoController extends Controller
         if (! $todo) {
             return response()->json(['message' => 'Todo not found'], 404);
         }
+        $updated = $this->service->update($todo, $validated);
+
+        return response()->json([
+            'message' => 'Todo updated successfully.',
+            'data' => $updated,
+        ]);
     }
 
     /**

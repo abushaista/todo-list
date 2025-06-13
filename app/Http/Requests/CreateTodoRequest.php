@@ -33,6 +33,7 @@ class CreateTodoRequest extends FormRequest
         return [
             //
             'title' => 'required|max:255',
+            'assignee' => 'nullable|string|max:50',
             'due_date' => 'required|date|after:today',
             'status' => [Rule::enum(StatusEnum::class)],
             'priority' => ['required', new Enum(PriorityEnum::class)],

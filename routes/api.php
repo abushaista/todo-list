@@ -23,3 +23,5 @@ Route::get('/todo/search', [TodoController::class, 'search']);
 Route::get('/todo/chart', [TodoController::class, 'chart']);
 
 Route::post('/todo/export', [TodoController::class, 'export']);
+
+Route::put('/todo/{id}', [TodoController::class, 'update']);

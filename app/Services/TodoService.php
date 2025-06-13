@@ -3,10 +3,10 @@
 namespace App\Services;
 
 use App\Contracts\TodoServiceInterface;
-use App\Models\Todo;
-use Illuminate\Support\Collection;
 use App\Enums\SummaryType;
+use App\Models\Todo;
 use DB;
+use Illuminate\Support\Collection;
 
 class TodoService implements TodoServiceInterface
 {
@@ -36,44 +36,49 @@ class TodoService implements TodoServiceInterface
         return $data;
     }
 
-    public function summary(string $type): array {
-        if($type == SummaryType::Status->value) {
+    public function summary(string $type): array
+    {
+        if ($type == SummaryType::Status->value) {
             $data = Todo::query()
                 ->select('status', DB::raw('count(1) as total'))
                 ->groupBy('status')
                 ->pluck('total', 'status')
                 ->toArray();
+
             return [
-                'status_summary' => $data
+                'status_summary' => $data,
             ];
-        } else if($type == SummaryType::Priority->value) {
+        } elseif ($type == SummaryType::Priority->value) {
             $data = Todo::query()
                 ->select('priority', DB::raw('count(1) as total'))
                 ->groupBy('priority')
                 ->pluck('total', 'priority')
                 ->toArray();
+
             return [
-                'proprity_summary' => $data
+                'proprity_summary' => $data,
             ];
-        } else if($type == SummaryType::Assignee->value) {
+        } elseif ($type == SummaryType::Assignee->value) {
             $data = Todo::select([
-                    'assignee',
-                    DB::raw('COUNT(*) as total_todos'),
-                    DB::raw("SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as total_pending"),
-                    DB::raw("SUM(CASE WHEN status = 'completed' THEN time_tracked ELSE 0 END) as total_time_tracked_completed")
-                ])
+                'assignee',
+                DB::raw('COUNT(*) as total_todos'),
+                DB::raw("SUM(CASE WHEN status = 'pending' THEN 1 ELSE 0 END) as total_pending"),
+                DB::raw("SUM(CASE WHEN status = 'completed' THEN time_tracked ELSE 0 END) as total_time_tracked_completed"),
+            ])
                 ->groupBy('assignee')
                 ->get();
+
             return [
                 'assignee_summary' => $data->keyBy('assignee')->map(function ($item) {
                     return [
                         'total_todos' => (int) $item->total_todos,
                         'total_pending' => (int) $item->total_pending,
                         'total_time_tracked_completed' => (float) $item->total_time_tracked_completed,
-                        ];
-                    })
-                ];
-        } 
+                    ];
+                }),
+            ];
+        }
+
         return [];
     }
 
@@ -82,9 +87,15 @@ class TodoService implements TodoServiceInterface
         return Todo::create($data);
     }
 
-    public function update(Todo $todo, array $data): Todo {}
+    public function update(Todo $todo, array $data): Todo
+    {
+        $todo->update($data);
 
-    public function delete(Todo $todo): void {
+        return $todo->fresh();
+    }
+
+    public function delete(Todo $todo): void
+    {
         $todo->delete();
     }
 

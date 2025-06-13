@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\PriorityEnum;
+use App\Enums\StatusEnum;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TodoUpdateRequest extends FormRequest
 {
@@ -22,6 +25,9 @@ class TodoUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'assignee' => 'nullable|string|max:50',
+            'due_date' => 'nullable|date|after:today',
+            'time_tracked' => 'nullable|numeric|max:100000',
             'status' => [Rule::enum(StatusEnum::class)],
             'priority' => [Rule::enum(PriorityEnum::class)],
         ];
